@@ -15,18 +15,18 @@ class _secondState extends State<second> {
   void initState() {
     // TODO: implement initState
     super.initState();
-  shayari=d.Sayari[widget.index];
+  shayari=d.s[widget.index];
   }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("${d.cate[widget.index]}"),),
+      appBar: AppBar(title: Text("${d.title[widget.index]}"),),
       body: ListView.separated(
           itemBuilder: (context, index) {
             return ListTile(onTap: () {
               Navigator.push(context, MaterialPageRoute(builder:
               (context) {
-                return third(widget.index,shayari);
+                return third(index,shayari);
               },));
             },
               tileColor: Colors.pink,

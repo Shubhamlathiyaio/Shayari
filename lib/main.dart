@@ -21,7 +21,7 @@ class _HomeState extends State<Home> {
     return Scaffold(
       appBar: AppBar(title: Text("Shayari"),),
       body: ListView.builder(
-        itemCount: d.cate.length,
+        itemCount: d.title.length,
         itemBuilder: (context, index) {
         return Card(
           child: ListTile(onTap: () {
@@ -29,7 +29,7 @@ class _HomeState extends State<Home> {
               return second(index);
             },));
           },
-            title: Text("${d.cate[index]}"),
+            title: Text("${d.title[index]}"),
           ),
         );
       },),
