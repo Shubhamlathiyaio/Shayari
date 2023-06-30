@@ -29,6 +29,11 @@ class _HomeState extends State<Home> {
               return second(index);
             },));
           },
+            leading: InkWell(onTap:() {
+              Navigator.push(context, MaterialPageRoute(builder: (context) {
+                return photo(index);
+              },));
+            },child: Image.asset("${d.main_image[index]}")),
             title: Text("${d.title[index]}"),
           ),
         );
@@ -37,5 +42,13 @@ class _HomeState extends State<Home> {
   }
 }
 
-class _2 {
+class photo extends StatelessWidget {
+  int i;
+  photo(this.i);
+
+  @override
+  Widget build(BuildContext context) {
+    return Image.asset(d.main_image[i]);
+  }
 }
+

@@ -56,155 +56,166 @@ class _forthState extends State<forth> {
           ),
           Center(
               child: Expanded(
-                child: Container(
-                    color: Colors.brown,
-                    width: double.infinity,
-                    child: Expanded(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+            child: Container(
+                color: Colors.brown,
+                width: double.infinity,
+                child: Expanded(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      SizedBox(
+                        height: 20,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          SizedBox(
-                            height: 20,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Container(
+                          InkWell(
+                            onTap: () {
+                              showModalBottomSheet(
+                                isScrollControlled: true,
+                                context: context,
+                                builder: (context) {
+                                  return Container(
+                                    height: size,
+                                    child: GridView.builder(
+                                      gridDelegate:
+                                          SliverGridDelegateWithFixedCrossAxisCount(
+                                              crossAxisCount: 2),
+                                      itemBuilder: (context, index) {
+                                        return InkWell(
+                                            onTap: () {
+                                              co = [
+                                                d.co[index],
+                                                d.co[index + 1]
+                                              ];
+                                              Navigator.pop(context);
+                                              setState(() {});
+                                            },
+                                            child: Container(
+                                              margin: EdgeInsets.all(10),
+                                              decoration: BoxDecoration(
+                                                  gradient: LinearGradient(
+                                                      colors: [
+                                                    d.co[index],
+                                                    d.co[index + 1]
+                                                  ])),
+                                            ));
+                                      },
+                                    ),
+                                  );
+                                },
+                              );
+                            },
+                            child: Container(
+                                height: 40,
+                                width: 40,
                                 padding: EdgeInsets.all(2),
                                 color: Colors.white,
-                                child: IconButton(
-                                    onPressed: () {
-                                      showModalBottomSheet(
-                                        isScrollControlled: true,
-                                        context: context,
-                                        builder: (context) {
-                                          return Container(
-                                            height: size,
-                                            child: GridView.builder(
-                                              gridDelegate:
-                                                  SliverGridDelegateWithFixedCrossAxisCount(
-                                                      crossAxisCount: 2),
-                                              itemBuilder: (context, index) {
-                                                return InkWell(
-                                                    onTap: () {
-                                                      co = [
-                                                        d.co[index],
-                                                        d.co[index + 1]
-                                                      ];
-                                                      Navigator.pop(context);
-                                                      setState(() {});
-                                                    },
-                                                    child: Container(
-                                                      margin: EdgeInsets.all(10),
-                                                      decoration: BoxDecoration(
-                                                          gradient: LinearGradient(
-                                                              colors: [
-                                                            d.co[index],
-                                                            d.co[index + 1]
-                                                          ])),
-                                                    ));
-                                              },
-                                            ),
-                                          );
-                                        },
-                                      );
-                                    },
-                                    icon: Icon(
-                                      Icons.color_lens,
-                                      size: 50,
-                                    )),
-                              ),
-                              SizedBox(
-                                width: 50,
-                              ),
-                              InkWell(
-                                  onTap: () {
-                                    co = gradi;
-                                    gradi = random();
-                                    setState(() {});
-                                  },
-                                  child: Container(
-                                      width: 40,
-                                      height: 40,
-                                      decoration: BoxDecoration(
-                                          gradient: LinearGradient(colors: gradi))))
-                            ],
+                                child:
+                                    Image.asset("Assets/Images/Icon/lens.jpg")),
                           ),
                           SizedBox(
-                            height: 20,
+                            width: 50,
                           ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              InkWell(onTap: () {
-                                showModalBottomSheet(
-                                  isScrollControlled: true,
-                                    context: context,
-                                    builder: (context) {
-                                      return Container(
-                                        height: size,
-                                        child: GridView.builder(
-                                            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                                                crossAxisCount: 5),
-                                            itemCount: d.co.length,
-                                            itemBuilder: (context, index) {
-                                              return InkWell(onTap: () {
-                                                co=[d.co[index],d.co[index]];
-                                              },child: Container(color: d.co[index],margin: EdgeInsets.all(10),));
-                                            },),
-                                      );
-                                    },);
+                          InkWell(
+                              onTap: () {
+                                co = gradi;
+                                gradi = random();
+                                setState(() {});
                               },
-                                child: Container(
-                                    height: 30,
-                                    width: 150,
-                                    color: Colors.red,
-                                    child: Center(child: Text("Background"))),
-                              ),
-                              Container(
-                                  height: 30,
-                                  width: 150,
-                                  color: Colors.red,
-                                  child: Center(child: Text("Text Color"))),
-                              Container(
-                                  height: 30,
-                                  width: 150,
-                                  color: Colors.red,
-                                  child: Center(child: Text("Share"))),
-                            ],
-                          ),
-                          SizedBox(
-                            height: 20,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Container(
-                                  height: 30,
-                                  width: 150,
-                                  color: Colors.red,
-                                  child: Center(child: Text("Font"))),
-                              Container(
-                                  height: 30,
-                                  width: 150,
-                                  color: Colors.red,
-                                  child: Center(child: Text("Emoji"))),
-                              Container(
-                                  height: 30,
-                                  width: 150,
-                                  color: Colors.red,
-                                  child: Center(child: Text("Text Size"))),
-                            ],
-                          ),
-                          SizedBox(
-                            height: 20,
-                          ),
+                              child: Container(
+                                  width: 40,
+                                  height: 40,
+                                  decoration: BoxDecoration(
+                                      gradient: LinearGradient(colors: gradi))))
                         ],
                       ),
-                    )),
-              )),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          InkWell(
+                            onTap: () {
+                              showModalBottomSheet(
+                                isScrollControlled: true,
+                                context: context,
+                                builder: (context) {
+                                  return Container(
+                                    height: size,
+                                    child: GridView.builder(
+                                      gridDelegate:
+                                          SliverGridDelegateWithFixedCrossAxisCount(
+                                              crossAxisCount: 5),
+                                      itemCount: d.co.length,
+                                      itemBuilder: (context, index) {
+                                        return InkWell(
+                                            onTap: () {
+                                              co = [d.co[index], d.co[index]];
+                                              Navigator.pop(context);
+                                              setState(() {});
+                                            },
+                                            child: Container(
+                                              color: d.co[index],
+                                              margin: EdgeInsets.all(10),
+                                            ));
+                                      },
+                                    ),
+                                  );
+                                },
+                              );
+                            },
+                            child: Container(
+                                height: 30,
+                                width: 150,
+                                color: Colors.red,
+                                child: Center(child: Text("Background"))),
+                          ),
+                          Container(
+                              height: 30,
+                              width: 150,
+                              color: Colors.red,
+                              child: Center(child: Text("Text Color"))),
+                          Container(
+                              height: 30,
+                              width: 150,
+                              color: Colors.red,
+                              child: Center(child: Text("Share"))),
+                        ],
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Container(
+                              height: 30,
+                              width: 150,
+                              color: Colors.red,
+                              child: Center(child: Text("Font"))),
+                          Container(
+                              height: 30,
+                              width: 150,
+                              color: Colors.red,
+                              child: Center(child: Text("Emoji"))),
+                          Container(
+                              height: 30,
+                              width: 150,
+                              color: Colors.red,
+                              child: Center(child: Text("Text Size"))),
+                        ],
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                    ],
+                  ),
+                )),
+          )),
         ],
       ),
     );

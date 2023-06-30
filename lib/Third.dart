@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:shayari/Data.dart';
 import 'package:shayari/forth.dart';
 
@@ -85,10 +86,10 @@ class _thirdState extends State<third> {
           SizedBox(height: 50),
           Expanded(child: Container(color: Colors.brown,
             child: Row(mainAxisAlignment: MainAxisAlignment.spaceAround,children: [
-              IconButton(onPressed:
-                   () {
-
-                   }, icon: Icon(Icons.copy,size: 50),),
+              IconButton(onPressed: () {
+                var value = ClipboardData(text: "${widget.a[widget.index]}");
+                Clipboard.setData(value);
+              }, icon: Icon(Icons.copy,size: 50),),
               IconButton(onPressed:
                   () {
                     (widget.index>0) ? widget.index-- : widget.index;
@@ -108,7 +109,7 @@ class _thirdState extends State<third> {
               IconButton(onPressed:
                   () {
 
-              }, icon: Icon(Icons.copy,size: 50),),
+              }, icon: Icon(Icons.share,size: 50),),
             ]),
           )),
         ],
