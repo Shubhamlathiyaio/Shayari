@@ -16,6 +16,8 @@ class forth extends StatefulWidget {
 }
 
 List<Color> co = [Colors.pink, Colors.pink];
+String emo = "";
+Color tco = Colors.black;
 List<Color> coo = [Colors.pink, Colors.pink];
 int? R;
 
@@ -49,7 +51,7 @@ class _forthState extends State<forth> {
             decoration: BoxDecoration(gradient: LinearGradient(colors: co)),
             width: double.infinity,
             height: size - 300,
-            child: Center(child: Text("data", style: TextStyle(fontSize: 36))),
+            child: Center(child: Text("${emo+widget.a[widget.index]+emo}", style: TextStyle(fontSize: 36,color: tco))),
           )),
           SizedBox(
             height: 20,
@@ -141,28 +143,33 @@ class _forthState extends State<forth> {
                             onTap: () {
                               showModalBottomSheet(
                                 isScrollControlled: true,
+                                isDismissible: false,
                                 context: context,
                                 builder: (context) {
                                   return Container(
-                                    height: size,
-                                    child: GridView.builder(
-                                      gridDelegate:
-                                          SliverGridDelegateWithFixedCrossAxisCount(
-                                              crossAxisCount: 5),
-                                      itemCount: d.co.length,
-                                      itemBuilder: (context, index) {
-                                        return InkWell(
-                                            onTap: () {
-                                              co = [d.co[index], d.co[index]];
-                                              Navigator.pop(context);
-                                              setState(() {});
-                                            },
-                                            child: Container(
-                                              color: d.co[index],
-                                              margin: EdgeInsets.all(10),
-                                            ));
-                                      },
-                                    ),
+                                    height: size-500,
+                                    child:Row(mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                        crossAxisAlignment: CrossAxisAlignment.center,
+                                        children: [
+                                          Expanded(flex: 10,child: Container(child:
+                                            GridView.builder(
+                                                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                                                    crossAxisCount: 8
+                                                ),
+                                              itemCount: d.co.length,
+                                              itemBuilder: (context, index) {
+                                                  return InkWell(onTap: () {
+                                                    co=[d.co[index],d.co[index]];
+                                                    Navigator.pop(context);
+                                                    setState(() {});
+                                                  },child: Container(margin: EdgeInsets.all(10),color: d.co[index]));
+                                                },
+                                            ),)),
+                                          Align(alignment: AlignmentDirectional.topStart,child:InkWell(onTap: () {
+                                            Navigator.pop(context);
+                                          },child: Icon(Icons.close)))
+                                        ],
+                                    )
                                   );
                                 },
                               );
@@ -173,11 +180,47 @@ class _forthState extends State<forth> {
                                 color: Colors.red,
                                 child: Center(child: Text("Background"))),
                           ),
-                          Container(
-                              height: 30,
-                              width: 150,
-                              color: Colors.red,
-                              child: Center(child: Text("Text Color"))),
+                          InkWell(
+                            onTap: () {
+                              showModalBottomSheet(
+                                isScrollControlled: true,
+                                isDismissible: false,
+                                context: context,
+                                builder: (context) {
+                                  return Container(
+                                      height: size-500,
+                                      child:Row(mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                        crossAxisAlignment: CrossAxisAlignment.center,
+                                        children: [
+                                          Expanded(flex: 10,child: Container(child:
+                                          GridView.builder(
+                                            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                                                crossAxisCount: 8
+                                            ),
+                                            itemCount: d.co.length,
+                                            itemBuilder: (context, index) {
+                                              return InkWell(onTap: () {
+                                                tco=d.co[index];
+                                                Navigator.pop(context);
+                                                setState(() {});
+                                              },child: Container(margin: EdgeInsets.all(10),color: d.co[index]));
+                                            },
+                                          ),)),
+                                          Align(alignment: AlignmentDirectional.topStart,child:InkWell(onTap: () {
+                                            Navigator.pop(context);
+                                          },child: Icon(Icons.close)))
+                                        ],
+                                      )
+                                  );
+                                },
+                              );
+                            },
+                            child: Container(
+                                height: 30,
+                                width: 150,
+                                color: Colors.red,
+                                child: Center(child: Text("Text Color"))),
+                          ),
                           Container(
                               height: 30,
                               width: 150,
@@ -197,11 +240,48 @@ class _forthState extends State<forth> {
                               width: 150,
                               color: Colors.red,
                               child: Center(child: Text("Font"))),
-                          Container(
-                              height: 30,
-                              width: 150,
-                              color: Colors.red,
-                              child: Center(child: Text("Emoji"))),
+                          InkWell(
+                            onTap: () {
+                              showModalBottomSheet(
+                                isScrollControlled: true,
+                                isDismissible: false,
+                                context: context,
+                                builder: (context) {
+                                  return Container(
+                                      height: size-500,
+                                      child:Row(mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                        crossAxisAlignment: CrossAxisAlignment.center,
+                                        children: [
+                                          Expanded(flex: 10,child: Container(child:
+                                            ListView.separated(
+                                                itemBuilder: (context, index) {
+                                                  return InkWell(onTap: () {
+                                                    Navigator.pop(context);
+                                                    emo="\n${d.emo[index]}\n";
+                                                    setState(() {});
+                                                  },child: Text("${d.emo[index]}"));
+                                                },
+                                                separatorBuilder: (context, index) {
+                                                  return Container(height: 1,width: double.infinity,color: Colors.black,);
+                                                },
+                                                itemCount: d.emo.length
+                                            )
+                                          )),
+                                          Align(alignment: AlignmentDirectional.topStart,child:InkWell(onTap: () {
+                                            Navigator.pop(context);
+                                          },child: Icon(Icons.close)))
+                                        ],
+                                      )
+                                  );
+                                },
+                              );
+                            },
+                            child: Container(
+                                height: 30,
+                                width: 150,
+                                color: Colors.red,
+                                child: Center(child: Text("Emoji"))),
+                          ),
                           Container(
                               height: 30,
                               width: 150,

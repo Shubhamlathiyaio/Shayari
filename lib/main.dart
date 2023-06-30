@@ -48,7 +48,7 @@ class photo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Image.asset(d.main_image[i]);
+    return Image.asset(d.main_image[i],fit: BoxFit.fill,);
   }
 }
 
